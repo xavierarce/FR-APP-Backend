@@ -6,11 +6,11 @@ import knex from 'knex';
 const dbSQL = knex({
   client: 'pg',
   connection: {
-    host : '127.0.0.1',
+    host : process.env.DATABASE_HOST,
     port : 5432,
-    user : 'postgres',
-    password : 'test',
-    database : 'smartbrain'
+    user : process.env.DATABASE_USER,
+    password :  process.env.DATABASE_PW,
+    database : process.env.DATABASE_DB
   }
 });
 
@@ -101,7 +101,7 @@ app.put('/image',(req,res)=>{
 })
 
 
-const CLARIFAI_KEY = '6c6341d2800648e98e252d49de65e010'; // Replace this with your actual API key
+const CLARIFAI_KEY = process.env.CLARIFAI_KEY; // Replace this with your actual API key
 
 app.post('/detect-face', (req, res) => {
   const { imageUrl } = req.body;
