@@ -2,6 +2,8 @@ import Express, { response }  from "express";
 import bcrypt from "bcryptjs";
 import cors from 'cors';
 import knex from 'knex';
+import axios from 'axios'
+
 
 const dbSQL = knex({
   client: 'pg',
@@ -136,16 +138,18 @@ app.post('/detect-face', (req, res) => {
   };
 
   // Now make the external API call
-  fetch(`https://api.clarifai.com/v2/models/face-detection/versions/6dc7e46bc9124c5c8824be4822abe105/outputs`, requestOptions)
-    .then(response => response.text())
-    .then(result => {
-      // Process the result and send it back to the frontend
-      res.json(result);
-    })
-    .catch(error => {
-      console.log('error', error);
-      res.status(500).json({ error: 'Internal Server Error' });
-    });
+  try {
+    const response = await axios.post(
+      'https://api.clarifai.com/v2/models/face-detection/versions/6dc7e46bc9124c5c8824be4822abe105/outputs',
+      requestData,
+      requestOptions
+    );
+    
+    res.json(response.data);
+  } catch (error) {
+    console.error('error', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
 
