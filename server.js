@@ -2,7 +2,7 @@ import Express, { response }  from "express";
 import bcrypt from "bcryptjs";
 import cors from 'cors';
 import knex from 'knex';
-import axios from 'axios';
+import axios from 'axios';  
 
 
 const dbSQL = knex({
@@ -108,7 +108,7 @@ app.put('/image',(req,res)=>{
 
 const API_KEY = '6c6341d2800648e98e252d49de65e010'; // Replace this with your actual API key
 
-app.post('/detect-face', (req, res) => {
+app.post('/detect-face', async (req, res) => {
   const { imageUrl } = req.body;
 
   // You can directly pass the imageUrl to the external API call
