@@ -141,16 +141,17 @@ app.post('/detect-face', async (req, res) => {
   try {
     const response = await axios.post(
       'https://api.clarifai.com/v2/models/face-detection/versions/6dc7e46bc9124c5c8824be4822abe105/outputs',
-      requestData,
+      raw, // Use raw here, not requestData
       requestOptions
     );
-    
+
     res.json(response.data);
   } catch (error) {
     console.error('error', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
 
 
 app.listen(3000,()=>{
