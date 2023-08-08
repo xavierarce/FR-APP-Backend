@@ -2,7 +2,7 @@ import Express, { response }  from "express";
 import bcrypt from "bcryptjs";
 import cors from 'cors';
 import knex from 'knex';
-import axios from 'axios'
+import axios from 'axios';
 
 
 const dbSQL = knex({
