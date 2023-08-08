@@ -6,11 +6,11 @@ import knex from 'knex';
 const dbSQL = knex({
   client: 'pg',
   connection: {
-    host : process.env.DATABASE_HOST,
+    host : 'dpg-cj7ts6k5kgrc73cea6cg-a.oregon-postgres.render.com',
     port : 5432,
-    user : process.env.DATABASE_USER,
-    password :  process.env.DATABASE_PW,
-    database : process.env.DATABASE_DB
+    user : 'firstdb_mvhb_user',
+    password : 'X8V88KbI8ytU4nuXRNTHJTqHBzYTEGiE',
+    database : 'firstdb_mvhb'
   }
 });
 
