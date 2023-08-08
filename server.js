@@ -129,7 +129,7 @@ app.post('/detect-face', async (req, res) => {
   });
 
   const requestOptions = {
-    method: 'post',
+    method: 'POST',
     headers: {
       'Accept': 'application/json',
       'Authorization': 'Key ' + API_KEY, // Pass the API key in the Authorization header
