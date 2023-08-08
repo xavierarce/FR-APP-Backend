@@ -6,7 +6,7 @@ import knex from 'knex';
 const dbSQL = knex({
   client: 'pg',
   connection: {
-    host : 'dpg-cj7ts6k5kgrc73cea6cg-a.oregon-postgres.render.com',
+    host : 'dpg-cj7ts6k5kgrc73cea6cg-a',
     port : 5432,
     user : 'firstdb_mvhb_user',
     password : 'X8V88KbI8ytU4nuXRNTHJTqHBzYTEGiE',
