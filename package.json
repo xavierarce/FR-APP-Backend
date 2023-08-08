@@ -8,14 +8,14 @@
     "start": "node server.js",
     "start:dev": "nodemon server.js",
     "build": "npm install && webpack"
-  }
-  ,
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "webpack-cli": "^5.1.4"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
