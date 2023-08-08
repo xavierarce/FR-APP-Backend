@@ -101,7 +101,7 @@ app.put('/image',(req,res)=>{
 })
 
 
-const CLARIFAI_KEY = process.env.CLARIFAI_KEY; // Replace this with your actual API key
+const API_KEY = '6c6341d2800648e98e252d49de65e010'; // Replace this with your actual API key
 
 app.post('/detect-face', (req, res) => {
   const { imageUrl } = req.body;
@@ -127,7 +127,7 @@ app.post('/detect-face', (req, res) => {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
-      'Authorization': 'Key ' + CLARIFAI_KEY, // Pass the API key in the Authorization header
+      'Authorization': 'Key ' + API_KEY, // Pass the API key in the Authorization header
     },
     body: raw
   };
