@@ -108,7 +108,7 @@ app.put('/image',(req,res)=>{
 
 const API_KEY = '6c6341d2800648e98e252d49de65e010'; // Replace this with your actual API key
 
-app.post('/detect-face', (req, res) => {
+app.post('/detect-face', async (req, res) => {
   const { imageUrl } = req.body;
 
   // You can directly pass the imageUrl to the external API call
@@ -138,17 +138,20 @@ app.post('/detect-face', (req, res) => {
   };
 
   // Now make the external API call
-  fetch(`https://api.clarifai.com/v2/models/face-detection/versions/6dc7e46bc9124c5c8824be4822abe105/outputs`, requestOptions)
-    .then(response => response.text())
-    .then(result => {
-      // Process the result and send it back to the frontend
-      res.send(result);
-    })
-    .catch(error => {
-      console.log('error', error);
-      res.status(500).json({ error: 'Internal Server Error' });
-    });
+  try {
+    const response = await axios.post(
+      'https://api.clarifai.com/v2/models/face-detection/versions/6dc7e46bc9124c5c8824be4822abe105/outputs',
+      raw, // Use raw here, not requestData
+      requestOptions
+    );
+
+    res.json(response.data);
+  } catch (error) {
+    console.error('error', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
+
 
 
 app.listen(3000,()=>{
