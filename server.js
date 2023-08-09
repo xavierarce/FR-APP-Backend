@@ -106,7 +106,7 @@ app.put('/image',(req,res)=>{
 })
 
 
-const API_KEY = '6c6341d2800648e98e252d49de65e010'; // Replace this with your actual API key
+const API_KEY = process.env.API_KEY; // Replace this with your actual API key
 
 app.post('/detect-face', async (req, res) => {
   const { imageUrl } = req.body;
