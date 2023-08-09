@@ -145,7 +145,7 @@ app.post('/detect-face', async (req, res) => {
       requestOptions
     );
 
-    res.send(response.data);
+    res.json(response.data);
   } catch (error) {
     console.error('error', error);
     res.status(500).json({ error: 'Internal Server Error' });
