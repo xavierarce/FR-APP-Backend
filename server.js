@@ -3,6 +3,8 @@ import bcrypt from "bcryptjs";
 import cors from 'cors';
 import knex from 'knex';
 import axios from 'axios';  
+import dotenv from 'dotenv'
+dotenv.config()
 
 
 const dbSQL = knex({
@@ -56,29 +58,31 @@ app.post('/register',(req,res)=>{
   }
   var salt = bcrypt.genSaltSync(10);
   var hash = bcrypt.hashSync(password, salt);
+    console.log(0)
     dbSQL.transaction(trx=>{
-      trx.insert({
-        hash:hash,
-        email:email
-      })
-      .into('login')
-      .returning('email')
-      .then(loginEmail=>{
-        return trx('users')
-        .returning('*')
-        .insert({
-          email: loginEmail[0].email,
-          name : name,
-          joined: new Date()
-        }).then(user =>{
-          res.json(user[0]);
-        })  
-      })
-      .then(trx.commit)
-      .catch(trx.rollback) 
+    console.log(1)
+    trx.insert({
+      hash:hash,
+      email:email
     })
-    
-    .catch(err=>res.status(404).json('Unable to register'))
+    .into('login')
+    .returning('email')
+    .then(loginEmail=>{
+      return trx('users')
+      .returning('*')
+      .insert({
+        email: loginEmail[0].email,
+        name : name,
+        joined: new Date()
+      }).then(user =>{
+        res.json(user[0]);
+      })  
+    })
+    .then(trx.commit)
+    .catch(trx.rollback) 
+  })
+  
+  .catch(err=>res.status(404).json('Unable to register'))
 })
 
 app.get('/profile/:id',(req,res)=>{
@@ -154,7 +158,7 @@ app.post('/detect-face', async (req, res) => {
 
 
 
-app.listen(3000,()=>{
+app.listen(8000,()=>{
     console.log('Running')
 })
 
